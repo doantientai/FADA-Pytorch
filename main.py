@@ -8,7 +8,7 @@ parser=argparse.ArgumentParser()
 parser.add_argument('--n_epoches_1',type=int,default=10)
 parser.add_argument('--n_epoches_2',type=int,default=100)
 parser.add_argument('--n_epoches_3',type=int,default=100)
-parser.add_argument('--n_target_samples',type=int,default=7)
+parser.add_argument('--n_target_samples',type=int,default=1)
 parser.add_argument('--batch_size',type=int,default=64)
 
 opt=vars(parser.parse_args())
@@ -65,6 +65,11 @@ for epoch in range(opt['n_epoches_1']):
 
 X_s,Y_s=dataloader.sample_data()
 X_t,Y_t=dataloader.create_target_samples(opt['n_target_samples'])
+
+print(X_s.size())
+print(Y_s.size())
+print(X_t.size())
+print(Y_t.size())
 
 #-----------------train DCD for step 2--------------------------------
 
@@ -243,25 +248,3 @@ for epoch in range(opt['n_epoches_3']):
     accuracy = round(acc / float(len(test_dataloader)), 3)
 
     print("step3----Epoch %d/%d  accuracy: %.3f " % (epoch + 1, opt['n_epoches_3'], accuracy))
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
